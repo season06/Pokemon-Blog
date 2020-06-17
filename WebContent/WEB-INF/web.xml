@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://java.sun.com/xml/ns/javaee"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+		 version="3.0">
+  
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<page-encoding>UTF-8</page-encoding>
+			<default-content-type>text/html</default-content-type>
+		</jsp-property-group>
+	</jsp-config>
+	
+	<welcome-file-list>
+		<welcome-file>homepage.jsp</welcome-file>
+	</welcome-file-list>
+
+
+	<servlet>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>cc.openhome.controller.Register</servlet-class>
+		<init-param>
+			<param-name>SUCCESS_PATH</param-name>
+			<param-value>register_success.jsp</param-value>
+	    </init-param>
+	    <init-param>
+			<param-name>FORM_PATH</param-name>
+			<param-value>register.jsp</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+  
+  
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>cc.openhome.controller.Login</servlet-class>
+		<init-param>
+			<param-name>SUCCESS_PATH</param-name>
+			<param-value>blog</param-value>
+	    </init-param>
+	    <init-param>
+			<param-name>ERROR_PATH</param-name>
+			<param-value>homepage.jsp</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>cc.openhome.controller.Logout</servlet-class>
+		<init-param>
+			<param-name>LOGIN_PATH</param-name>
+			<param-value>homepage.jsp</param-value>
+	    </init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>NewMessage</servlet-name>
+		<servlet-class>cc.openhome.controller.NewMessage</servlet-class>
+		<init-param>
+			<param-name>SUCCESS_PATH</param-name>
+			<param-value>blog</param-value>
+	    </init-param>
+	    <init-param>
+			<param-name>ERROR_PATH</param-name>
+			<param-value>search.jsp</param-value>
+	    </init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewMessage</servlet-name>
+		<url-pattern>/new_message</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>DelMessage</servlet-name>
+		<servlet-class>cc.openhome.controller.DelMessage</servlet-class>
+	    <init-param>
+			<param-name>BLOG_PATH</param-name>
+			<param-value>blog</param-value>
+	    </init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelMessage</servlet-name>
+		<url-pattern>/del_message</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>Blog</servlet-name>
+		<servlet-class>cc.openhome.controller.BlogDisplay</servlet-class>
+	    <init-param>
+			<param-name>BLOG_PATH</param-name>
+			<param-value>blog.jsp</param-value>
+	    </init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Blog</servlet-name>
+		<url-pattern>/blog</url-pattern>
+		
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>cc.openhome.controller.PokemonDisplay</servlet-class>
+	    <init-param>
+			<param-name>SEARCH_PATH</param-name>
+			<param-value>search.jsp</param-value>
+	    </init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	
+	<resource-ref>
+	    <res-ref-name>jdbc/pokemon</res-ref-name>
+	    <res-type>javax.sql.DataSource</res-type>
+	    <res-auth>Container</res-auth>
+	    <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+  
+</web-app>
