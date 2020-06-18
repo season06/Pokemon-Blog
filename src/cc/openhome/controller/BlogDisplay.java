@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import cc.openhome.model.Account;
 import cc.openhome.model.Blog;
 import cc.openhome.model.UserService;
+import cc.openhome.pokemon.ListenerTest;
 
 @WebServlet(
 	name = "Blog",
@@ -50,6 +51,7 @@ public class BlogDisplay extends HttpServlet {
 	        List<Blog> blog = userService.getInfo(info);
 	        request.setAttribute("blog", blog);
 	    }
+	    request.setAttribute("counter", ListenerTest.counter);
         request.setAttribute("username", username);
     	request.getRequestDispatcher(BLOG_PATH).forward(request, response);
 	}

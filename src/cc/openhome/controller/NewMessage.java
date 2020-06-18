@@ -37,7 +37,7 @@ public class NewMessage extends HttpServlet
                              		throws ServletException, IOException
     {
     	String username = (String) request.getSession().getAttribute("login");
-    	String pokemon = "001_0";
+    	String pokemon = "¥Ö¥d¥C";
     	UserService userService = 
     			(UserService) getServletContext().getAttribute("userService");
     	

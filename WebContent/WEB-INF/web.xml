@@ -15,7 +15,10 @@
 	<welcome-file-list>
 		<welcome-file>homepage.jsp</welcome-file>
 	</welcome-file-list>
-
+	
+	<listener> 
+		<listener-class>cc.openhome.pokemon.ListenerTest</listener-class> 
+	</listener> 
 
 	<servlet>
 		<servlet-name>Register</servlet-name>

@@ -57,43 +57,6 @@ public class JDBCtemplate {
 	{
 		return queryForList(sql, new Object[] {});
 	}
-	public String getID(String sql, preStatement psst)
-	{
-		System.out.println(sql);
-		Connection conn = null;
-        PreparedStatement stmt = null;
-        String primaryKey = "";
-        try {
-			conn = dataSource.getConnection();
-			stmt = conn.prepareStatement(sql);
-			stmt.executeUpdate(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			ResultSet rs = stmt.getGeneratedKeys();
-			if (rs.next())   
-				primaryKey = rs.getString(1);    
-        } catch (SQLException e) {
-		    throw new RuntimeException(e);
-		} catch (Exception e) {
-		    throw new RuntimeException(e);
-		} finally {
-			if(stmt != null)
-			{
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}				
-			}
-			if(conn != null)
-			{
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
-        return primaryKey;
-	}
 	
 	public Object execute(String sql, preStatement psst)
 	{

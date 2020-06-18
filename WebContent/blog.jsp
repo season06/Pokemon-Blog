@@ -11,6 +11,7 @@
 		<title>Blog</title>
 	</head>
 	<body>
+		現在在線人數：<%= request.getAttribute("counter") %>
 	    <% List<Blog> blog = (List<Blog>) request.getAttribute("blog");
 			for(Blog info: blog) { %>
 				<table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
@@ -23,5 +24,6 @@
 					<button type="button" formaction="/del_message?id=<%=info.getID()%>" formmethod="get">刪除</button>
 				</table>
 			<% } %>
+		<br><a href='logout'>Logout ${sessionScope.login}</a>
 	</body>
 </html>
