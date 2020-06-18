@@ -15,19 +15,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cc.openhome.model.Account;
+import cc.openhome.model.Blog;
 import cc.openhome.model.UserService;
 import cc.openhome.pokemon.FunctionTool;
 
 
 @WebServlet(
-	name = "Register",
-	urlPatterns = {"/register"},
+	name = "Forget",
+	urlPatterns = {"/forget"},
 	initParams = {
-		@WebInitParam(name = "SUCCESS_PATH", value = "register_success.jsp"),
-		@WebInitParam(name = "FORM_PATH", value = "register.jsp")
+		@WebInitParam(name = "SUCCESS_PATH", value = "homepage.jsp"),
+		@WebInitParam(name = "FORM_PATH", value = "forget.jsp")
 	}
 )
-public class Register extends HttpServlet {
+public class Forget extends HttpServlet {
     private String SUCCESS_PATH;
     private String FORM_PATH;
 
@@ -44,33 +45,29 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 							throws ServletException, IOException
 	{
-		String email = request.getParameter("email");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String password2 = request.getParameter("password2");
 		String en_pw = "";
 		List<String> error = new ArrayList<>();
 		
-		if(!validateEmail(email))
-			error.add("Email is empty or format is not correct!");
-		if(!validateUsername(username))
-			error.add("Username is empty or format is not correct!");
 		if(!validatePassword(password, password2))
 			error.add("Please check the format of password, and double check your password.");
+		else
+			en_pw = FunctionTool.Encrypt(password);	
 		
-		en_pw = FunctionTool.Encrypt(password);	
-		
-		Account account = new Account(username, en_pw, email);
+		Account account = new Account(username, en_pw);
         UserService userService = (UserService) getServletContext().getAttribute("userService");
-        if (userService.isUserExisted(account))
-            error.add("This username is exist.");
+        if (!userService.isUserExisted(account))
+            error.add("This username is empty.");
         
 		String path;
 		if(error.isEmpty())
 		{
-			userService.addUser(account);
+			Account user = userService.getUser(account);
+			userService.updatePassword(account);
 			try {
-				FunctionTool.SendMail(email, "register");
+				FunctionTool.SendMail(user.getEmail(), "forget password");
 				response.getWriter().println("郵件傳送成功");
 			} catch (Exception e) {
 				throw new ServletException(e);
@@ -84,20 +81,6 @@ public class Register extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
-	}
-	
-	private boolean validateEmail(String email)
-	{
-		final Pattern regex = Pattern.compile(
-				"^[_a-z0-9-]+([.][_a-z0-9-]+)*@[a-z0-9-]+([.][a-z0-9-]+)*$");
-		return email != null && regex.matcher(email).find();
-	}
-	
-	private boolean validateUsername(String username)
-	{
-		final Pattern regex = Pattern.compile(
-				"^\\w{1,16}$");
-		return username != null && regex.matcher(username).find();
 	}
 	
 	private boolean validatePassword(String password, String password2)

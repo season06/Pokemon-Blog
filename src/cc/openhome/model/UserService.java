@@ -14,17 +14,21 @@ public class UserService
         this.blogDAO = blogDAO;
         this.pokemonDAO = pokemonDAO;
     }
+
+    private class DateComparator implements Comparator<Blog>
+    {
+        @Override
+        public int compare(Blog b1, Blog b2)
+        {
+            return -b1.getTime().compareTo(b2.getTime());
+        }
+    }
+    private DateComparator comparator = new DateComparator();
     
     public boolean isUserExisted(Account account)
     {
         return accountDAO.isUserExisted(account);
     }
-    
-    public void addUser(Account account)
-    {
-        accountDAO.addAccount(account);
-    }
-
     public boolean checkLogin(Account account)
     {
         if (account.getName() != null && account.getPassword() != null)
@@ -35,16 +39,19 @@ public class UserService
         return false;
     }
     
-    private class DateComparator implements Comparator<Blog>
+    public Account getUser(Account account)
     {
-        @Override
-        public int compare(Blog b1, Blog b2)
-        {
-            return -b1.getTime().compareTo(b2.getTime());
-        }
+    	Account user = accountDAO.getAccount(account);
+    	return user;
     }
-    
-    private DateComparator comparator = new DateComparator();
+    public void addUser(Account account)
+    {
+        accountDAO.addAccount(account);
+    }
+    public void updatePassword(Account account)
+    {
+        accountDAO.updatePassword(account);
+    }
     
     public List<Pokemon> getPokemon(Pokemon pokemon)
     {
@@ -57,7 +64,6 @@ public class UserService
         Collections.sort(blog, comparator);
         return blog;
     }
-    
     public void addInfo(Blog info) {
     	blogDAO.addInfo(info);
         newest.addFirst(info);
@@ -65,7 +71,6 @@ public class UserService
             newest.removeLast();
         }
     }
-   
     public void delInfo(Blog info) {
     	blogDAO.delInfo(info);
         newest.remove(info);

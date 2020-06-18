@@ -26,7 +26,7 @@
                     <td colspan='2' align='center'><input type='submit' value='Login'></td>
                 </tr>
                 <tr>
-                    <td colspan='2'><a href='forgot.html'>forget the password？</a></td>
+                    <td colspan='2'><a href='forget.html'>forget the password？</a></td>
                 </tr>
             </table>
         </form>

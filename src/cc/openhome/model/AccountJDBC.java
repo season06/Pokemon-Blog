@@ -22,14 +22,6 @@ public class AccountJDBC implements AccountDAO
     }
 
     @Override
-    public void addAccount(Account account)
-    {
-        jdbcTemplate.update(
-                "INSERT INTO user(account, password, email) VALUES(?, ?, ?)", 
-                new Object[] {account.getName(), account.getPassword(), account.getEmail()});
-    }
-
-    @Override
     public Account getAccount(Account account)
     {
         List<Map> rows = jdbcTemplate.queryForList(
@@ -44,5 +36,20 @@ public class AccountJDBC implements AccountDAO
         }
         return null;
     }
+    
+    @Override
+    public void addAccount(Account account)
+    {
+        jdbcTemplate.update(
+                "INSERT INTO user(account, password, email) VALUES(?, ?, ?)", 
+                new Object[] {account.getName(), account.getPassword(), account.getEmail()});
+    }
 
+    @Override
+    public void updatePassword(Account account)
+    {
+        jdbcTemplate.update(
+                "UPDATE user SET password = ? WHERE account = ?", 
+                new Object[] {account.getPassword(), account.getName()});
+    }
 }

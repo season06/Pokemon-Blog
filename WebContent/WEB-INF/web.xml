@@ -67,7 +67,23 @@
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet>
+		<servlet-name>Forget</servlet-name>
+		<servlet-class>cc.openhome.controller.Forget</servlet-class>
+		<init-param>
+			<param-name>SUCCESS_PATH</param-name>
+			<param-value>homepage.jsp</param-value>
+	    </init-param>
+	    <init-param>
+			<param-name>ERROR_PATH</param-name>
+			<param-value>forget.jsp</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Forget</servlet-name>
+		<url-pattern>/forget</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>NewMessage</servlet-name>
