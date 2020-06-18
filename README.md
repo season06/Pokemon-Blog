@@ -24,3 +24,4 @@
 - 實現 MVC/Model 2 架構(Model、Controller、View)，將請求處理、商務邏輯和畫面呈現區分為不同的角色職責
 
 ## Page
+![](https://github.com/season06/PokemonBlog/blob/master/DeveloperTool/pokemon_diagram.png)
