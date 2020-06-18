@@ -37,18 +37,18 @@ public class FunctionTool
 		String mailHost = "smtp.gmail.com";
 		String mailPort = "465";
 		String username = "mimi871006";
-		String password = "season1006";
+		String password = "youcannotseeme";
 		String from = "mimi871006@gmail.com";
-		String title = "PokemonBlog ";
+		String title = "";
 		String content = "";
 		if(type == "register")
 		{
-			title += "register sucess" ;
+			title = "PokemonBlog: register success";
 			content = "Welcome to join PokemonBlog~";
 		}
 		else if(type == "forget password")
 		{
-			title += "change password sucess" ;
+			title = "PokemonBlog: change password success" ;
 			content = "Please remember your password next time~";
 		}
 
@@ -71,10 +71,8 @@ public class FunctionTool
         message.setSubject(title);
         message.setText(content);
         message.setSentDate(new Date());
-        System.out.println("6");
         
         Transport.send(message);
-        System.out.println("7");
-        
+        System.out.println("send mail success");
 	}
 }
