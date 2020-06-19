@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <title>Home</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</head>
+<style>
+    /*a442ff*/
+    body {
+        background-image: url("./regist.jpg");
+        background-size: 100% 100%;
+    }
+    .regist{
+        border: 2px solid white;
+        border-radius: 20px;
+        position: absolute;
+        left:3%;
+        top: 35%;
+        width: 300px;
+        height: 450px;
+        padding: 20px;
+        background: linear-gradient(270deg,rgba(203, 248, 255, 0.7),rgba(17, 83, 137, 0.7));
+    }
+
+    .regist h3{
+        width: 100%;
+        text-align: center;
+        color: rgb(255, 255, 255);
+    }
+    
+    .regist .row{
+        width: 100%;
+        margin: 35px 0 10px;
+        transition: 0.5s;
+    }
+
+    .regist .inputBox{
+        position: relative;
+        width: 100%;
+        height: 40px;
+        color: rgb(255, 255, 255);
+    }
+
+    .regist .inputBox input{
+        padding: 5px 10px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background:transparent;
+        box-shadow: none;
+        border: none;
+        outline: none;
+        z-index: 1;
+        color: #6cc4ff;
+    }
+
+    .regist .inputBox .text{
+        position: absolute;
+        top: 0;
+        left: 0;
+        line-height: 35px;
+        transition: 0.5s;
+        padding: 0 10px;
+        pointer-events: none;
+    }
+
+    .regist .inputBox input:focus + .text{
+        top: -30px;
+        left: -10px;
+    }
+    .regist .inputBox input:valid + .text{
+        top: -30px;
+        left: -10px;
+    }
+
+    .regist .inputBox .line{
+        position: absolute;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: rgb(255, 255, 255);
+        transition: 0.5s;
+        pointer-events: none;
+    }
+
+    .regist .inputBox input:focus ~ .line,
+    .regist .inputBox input:valid ~ .line{
+        height: 80%;
+        border-radius: 3px;
+    }
+
+    input[type="submit"]{
+        margin-top: 10px;
+        width: 100%;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        background-color: #6cc4ff;
+        color: white;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    input[type="submit"]:hover{
+        background: #6cc4ff;
+        color: white;
+        box-shadow: 0 0 10px #6cc4ff,
+                    0 0 25px #6cc4ff,
+                    0 0 40px #6cc4ff;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <div class="regist">
+        <h3>Register</h3>
+        <form action="">
+            <div class="row">
+                <div class="inputBox">
+                    <input type="text" name="registName" required="required"  autocomplete="off">
+                    <span class="text">Name</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="inputBox">
+                    <input type="password" name="registPassword" required="required">
+                    <span class="text">Password</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="inputBox">
+                    <input type="password" name="registCPassword" required="required">
+                    <span class="text">Confirm Password</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="inputBox">
+                    <input type="email" name="registEmail" required="required"  autocomplete="off">
+                    <span class="text">Email</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>
