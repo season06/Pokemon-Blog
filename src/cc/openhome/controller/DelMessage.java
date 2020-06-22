@@ -26,8 +26,9 @@ public class DelMessage extends HttpServlet {
                              throws ServletException, IOException
     {
     	String username = (String) request.getSession().getAttribute("login");
-        String id = request.getParameter("id"); 
         UserService userService = (UserService) getServletContext().getAttribute("userService");
+        
+        String id = request.getParameter("delete");
         
         Blog blog = new Blog();
         blog.setUsername(username);

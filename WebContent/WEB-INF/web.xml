@@ -89,11 +89,7 @@
 		<servlet-name>NewMessage</servlet-name>
 		<servlet-class>cc.openhome.controller.NewMessage</servlet-class>
 		<init-param>
-			<param-name>SUCCESS_PATH</param-name>
-			<param-value>blog</param-value>
-	    </init-param>
-	    <init-param>
-			<param-name>ERROR_PATH</param-name>
+			<param-name>TRANS_PATH</param-name>
 			<param-value>search.jsp</param-value>
 	    </init-param>
 	</servlet>
@@ -132,7 +128,7 @@
 	</servlet-mapping>
 		<servlet>
 		<servlet-name>Search</servlet-name>
-		<servlet-class>cc.openhome.controller.PokemonDisplay</servlet-class>
+		<servlet-class>cc.openhome.controller.PokemonSearch</servlet-class>
 	    <init-param>
 			<param-name>SEARCH_PATH</param-name>
 			<param-value>search.jsp</param-value>

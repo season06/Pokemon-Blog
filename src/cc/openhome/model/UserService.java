@@ -53,10 +53,10 @@ public class UserService
         accountDAO.updatePassword(account);
     }
     
-    public List<Pokemon> getPokemon(Pokemon pokemon)
+    public Pokemon getPokemon(Pokemon pokemon)
     {
-    	List<Pokemon> list = pokemonDAO.getPokemon(pokemon);
-    	return list;
+    	Pokemon poke = pokemonDAO.getPokemon(pokemon);
+    	return poke;
     }
     
     public List<Blog> getInfo(Blog info) {

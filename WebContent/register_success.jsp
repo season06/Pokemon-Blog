@@ -7,6 +7,6 @@
 	</head>
 	<body>
 		<h1>${param.username} success to register</h1>
-		<a href='homepage.jsp'>-> go to your site</a>
+		<a href='homepage.jsp'>-> go to login</a>
 	</body>
 </html>

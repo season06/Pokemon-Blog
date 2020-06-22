@@ -154,7 +154,7 @@
         	<div style='color: rgb(255, 0, 0);'>${ requestScope.error }</div>
             <form class="login_info" method='post' action="login">
                 <p>Name</p>
-                <input type="text" name="username" autocomplete="off" value="${ param.username }">
+                <input type="text" name="username" autocomplete="off">
                 <p>Password</p>
                 <input type="password" name="password">
                 <input type="submit" value="Sign In">

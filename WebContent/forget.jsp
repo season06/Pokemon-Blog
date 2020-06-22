@@ -212,7 +212,7 @@
 			%>
         <form method='post' action='forget'>
             <div class="container"></div>
-            <div class="inputName"><input class="name" type="text" name="username" placeholder="Name" autocomplete="off" value='${param.username}'>
+            <div class="inputName"><input class="name" type="text" name="username" placeholder="Name" autocomplete="off">
             </div>
             <div class="inputPass"><input class="passwd" type="password" name="password" placeholder="Password">
             </div>

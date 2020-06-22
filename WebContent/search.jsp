@@ -1,5 +1,6 @@
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@page import="java.util.*, cc.openhome.model.Pokemon"%>
 <html>
-
 <head>
     <meta http-equiv="Pragma" content="no-cache">
     <title>Search</title>
@@ -107,7 +108,7 @@
             }
         }
 
-        @import url("./font.ttc");
+        @import url("./frontend_pict/font.ttc");
 
         .main {
             margin-top: 30px;
@@ -300,7 +301,7 @@
 
 <body>
     <div class="logo">
-        <a href="./blog.html">
+        <a href="./blog">
             <span><</span>
             <span>M</span>
             <span>y</span>
@@ -312,8 +313,8 @@
             <span>></span>
         </a>
     </div>
-    <form action="">
-        <input class="searchInput" type="text" name="search" autocomplete="off">
+    <form method="get" action="search">
+        <input class="searchInput" type="text" name="a_poke" autocomplete="off">
         <button class="searchSubmit" type="submit" value=""><span>
             <svg style="color: white;" xmlns="http://www.w3.org/2000/svg"
                 width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
@@ -332,11 +333,19 @@
             <span class="animate"></span>
             <span class="animate"></span>
             <div class="content">
-                <p><span>171. </span><span> 皮丘 </span><span> 電</span></p>
-                <img src="./pic3.png" alt="">
+            	<% Pokemon poke = (Pokemon) request.getAttribute("pokemon"); %>
+                <p><span><%= poke.getID() %></span><span><%= poke.getName() %></span><span><%= poke.getAttribute() %></span></p>
+                <img src=<%= poke.getPicture() %> alt="">
                 <br>
-                <form action="" method="POST">
-                    <textarea class="message" name="newMessage" cols="30" rows="10"></textarea>
+                <%
+				    List<String> error = (List<String>) request.getAttribute("error");
+				    if(error != null) {
+				        for (String err : error) {%>
+				        	<%=err%>
+				    <%}}
+				%>
+                <form action="new_message" method="POST">
+                    <textarea class="message" name="txt" cols="30" rows="10">${param.txt}</textarea>
                     <input class="submit" type="submit" value="Send">
                 </form>
             </div>

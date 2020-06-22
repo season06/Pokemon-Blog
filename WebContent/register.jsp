@@ -153,7 +153,7 @@
         <form method='post' action='register'>
             <div class="row">
                 <div class="inputBox">
-                    <input type="text" name="username" value='${param.username}' required="required"  autocomplete="off">
+                    <input type="text" name="username" required="required"  autocomplete="off">
                     <span class="text">Name</span>
                     <span class="line"></span>
                 </div>
@@ -174,7 +174,7 @@
             </div>
             <div class="row">
                 <div class="inputBox">
-                    <input type="email" name="email" value='${param.email}' required="required"  autocomplete="off">
+                    <input type="email" name="email" required="required"  autocomplete="off">
                     <span class="text">Email</span>
                     <span class="line"></span>
                 </div>

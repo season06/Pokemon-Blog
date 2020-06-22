@@ -17,20 +17,17 @@ import cc.openhome.model.UserService;
 	name = "NewMessage",
 	urlPatterns = {"/new_message"},
 	initParams = {
-		@WebInitParam(name = "SUCCESS_PATH", value = "blog"),
-		@WebInitParam(name = "ERROR_PATH", value = "search.jsp"),
+		@WebInitParam(name = "TRANS_PATH", value = "search.jsp"),
 	}
 )
 public class NewMessage extends HttpServlet
 {
-	private String SUCCESS_PATH;
-	private String ERROR_PATH;
+	private String TRANS_PATH;
 
     @Override
     public void init() throws ServletException
     {
-    	ERROR_PATH = getServletConfig().getInitParameter("MEMBER_PATH");
-    	SUCCESS_PATH = getServletConfig().getInitParameter("SUCCESS_PATH");
+    	TRANS_PATH = getServletConfig().getInitParameter("SUCCESS_PATH");
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -46,11 +43,9 @@ public class NewMessage extends HttpServlet
     	request.setCharacterEncoding("UTF-8");
     	String txt = request.getParameter("txt");
     	
+    	List<String> error = new ArrayList<>();
     	if(txt == null || txt.length() == 0)
-    	{
-    		response.sendRedirect(ERROR_PATH);
-    		return;
-    	}
+    		error.add("You don't enter any message!");
     	
     	if(txt.length() < 200)
     	{
@@ -60,10 +55,13 @@ public class NewMessage extends HttpServlet
     		blog.setTxt(txt);
     		blog.setTime(new Date());
     		userService.addInfo(blog);
-    		response.sendRedirect(SUCCESS_PATH);
     	}
     	else
-    		request.getRequestDispatcher(ERROR_PATH).forward(request, response);
+    		error.add("Max message's length is 200");
+    	
+    	if(!error.isEmpty())
+    		request.setAttribute("error", error);
+    	request.getRequestDispatcher(TRANS_PATH).forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request,

@@ -24,8 +24,7 @@ public class AccountJDBC implements AccountDAO
     @Override
     public Account getAccount(Account account)
     {
-        List<Map> rows = jdbcTemplate.queryForList(
-                "SELECT password, email FROM user WHERE account = ?",
+        List<Map> rows = jdbcTemplate.queryForList("SELECT password, email FROM user WHERE account = ?",
                 new Object[] { account.getName() });
         if(rows.size() == 1) 
         {

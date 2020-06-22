@@ -25,7 +25,7 @@ import cc.openhome.model.UserService;
 		@WebInitParam(name = "SEARCH_PATH", value = "search.jsp"),
 	}
 )
-public class PokemonDisplay extends HttpServlet {  
+public class PokemonSearch extends HttpServlet {  
 	private String SEARCH_PATH;
 
     @Override
@@ -36,14 +36,19 @@ public class PokemonDisplay extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
                              throws ServletException, IOException
 	{
+System.out.println("0");
     	UserService userService = 
     			(UserService) getServletContext().getAttribute("userService");
-
+    	String a_poke = request.getParameter("a_poke");
+System.out.println("1");
     	Pokemon poke = new Pokemon();
-		//poke.setName("name");
-        List<Pokemon> pokemon = userService.getPokemon(poke);     
-        request.setAttribute("pokemon", pokemon);      
+System.out.println("2");
+    	poke.setName(a_poke);
+System.out.println("3");
+        Pokemon pokemon = userService.getPokemon(poke);
+System.out.println("4");
+        request.setAttribute("pokemon", pokemon);
+System.out.println("5");
     	request.getRequestDispatcher(SEARCH_PATH).forward(request, response);
 	}
-    
 }
