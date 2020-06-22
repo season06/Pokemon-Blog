@@ -25,14 +25,21 @@
             background: transparent;
         }
 
-        .logo a {
+        .logo button{
+            border: none;
+            outline: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .logo p {
             font-size: 30px;
             margin: 0;
             padding: 0;
             text-decoration: none;
         }
 
-        .logo a::after {
+        .logo p::after {
             border-right: 2px white solid;
             margin: 0;
             padding: 0;
@@ -339,7 +346,11 @@
     <div class="head"></div>
     <img class="head_pic" src="./blog7.png" alt="">
     <div class="logo">
-        <a href="./home.html"></a>
+        <form action="">
+            <button name="logout" value="true">
+                <p></p>
+            </button>
+        </form>
     </div>
     <a href="./search.html" class="searchBox">
         <svg style="position: absolute; top: 10px; left: 10px; color: rgb(221, 221, 221);"
