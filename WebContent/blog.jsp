@@ -374,10 +374,6 @@
 </head>
 
 <body>
-	<div class="online_user">
-		<p><%= request.getAttribute("counter") %></p>
-	</div>
-
     <div class="head"></div>
     <img class="head_pic" src="./frontend_pict/blog7.png" alt="">
     <div class="logo">
@@ -392,13 +388,17 @@
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
     </a>
-    <% List<Blog> blog = (List<Blog>) request.getAttribute("blog");%>
+   	<div class="online_user">
+		<p><%= request.getAttribute("online") %></p>
+	</div>
+	
     <div class="welcome">
         <p>WELCOME</p>
-        <p><%= blog.get(0).getUsername() %></p>
+        <p><%= request.getAttribute("username") %></p>
     </div>
     <p class="yourPicture">YOUR MESSAGE</p>
 
+	<% List<Blog> blog = (List<Blog>) request.getAttribute("blog");%>
 	<% for(Blog info: blog) { %>
     <div class="main">
         <span class="animate"></span>

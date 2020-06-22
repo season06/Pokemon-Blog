@@ -71,7 +71,6 @@ public class Register extends HttpServlet {
 			userService.addUser(account);
 			try {
 				FunctionTool.SendMail(email, "register");
-				response.getWriter().println("郵件傳送成功");
 			} catch (Exception e) {
 				throw new ServletException(e);
 			}

@@ -331,7 +331,7 @@
             <span class="animate"></span>
             <span class="animate"></span>
             <div class="content">
-                <p><span><%= poke.getID() %></span><span><%= poke.getName() %></span><span><%= poke.getAttribute() %></span></p>
+                <p><span><%= poke.getID() %> </span><span><%= poke.getName() %> </span><span><%= poke.getAttribute() %></span></p>
                 <img src=<%= poke.getPicture() %> alt="">
                 <br>
                 <%

@@ -51,4 +51,15 @@ public class AccountJDBC implements AccountDAO
                 "UPDATE user SET password = ? WHERE account = ?", 
                 new Object[] {account.getPassword(), account.getName()});
     }
+    
+    @Override
+    public void delUser(String username)
+    {
+    	jdbcTemplate.update(
+                "DELETE FROM blog WHERE user_id = ?", 
+                new Object[] {username});
+    	jdbcTemplate.update(
+                "DELETE FROM user WHERE account = ?", 
+                new Object[] {username});
+    }
 }

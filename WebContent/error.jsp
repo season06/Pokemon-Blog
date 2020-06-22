@@ -6,11 +6,14 @@
         @import url("https://fonts.googleapis.com/css?family=VT323");
         body{
             background-color: black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
         }
         .error{
             margin: 0;
             width: 300px;
-            height: 100px;
+            height: 70px;
             background-color: rgb(255, 73, 49);
             border: white 2px solid;
             border-radius: 20px;
@@ -30,15 +33,15 @@
             padding: 0;
             margin: 0;
             font-size: 20px;
-            text-align: justify;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
     <div class="error">
-        <p class="title">ERROR : Something error</p>
-        <p class="discription">You have to bla bla bla bla bla bla bla bla bla bla bla bla.</p>
+        <p class="title">Account Freeze</p>
+        <p class="discription">login fail more than 3 times.</p>
     </div>
 </body>
 

@@ -6,4 +6,5 @@ public interface AccountDAO
     Account getAccount(Account account); 
     void addAccount(Account account);
     void updatePassword(Account account);
+    void delUser(String username);
 }

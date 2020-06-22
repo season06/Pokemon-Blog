@@ -29,14 +29,17 @@ public class UserService
     {
         return accountDAO.isUserExisted(account);
     }
-    public boolean checkLogin(Account account)
+    public int checkLogin(Account account)
     {
         if (account.getName() != null && account.getPassword() != null)
         {
-            Account storedAcct = accountDAO.getAccount(account); 
-            return storedAcct != null && storedAcct.getPassword().equals(account.getPassword()); 
+            Account storedAcct = accountDAO.getAccount(account);
+            if(storedAcct == null)
+            	return 0;
+            if(!storedAcct.getPassword().equals(account.getPassword()))
+            	return -1;
         }
-        return false;
+        return 1;
     }
     
     public Account getUser(Account account)
@@ -51,6 +54,10 @@ public class UserService
     public void updatePassword(Account account)
     {
         accountDAO.updatePassword(account);
+    }
+    public void delUser(String username)
+    {
+    	accountDAO.delUser(username);
     }
     
     public Pokemon getPokemon(String pokemon_name)

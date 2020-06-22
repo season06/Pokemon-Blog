@@ -38,14 +38,9 @@ public class PokemonSearch extends HttpServlet {
 	{
     	UserService userService = 
     			(UserService) getServletContext().getAttribute("userService");
+    	
     	request.setCharacterEncoding("UTF-8");
-    	//request.setCharacterEncoding("ISO8859-1");
-    	response.setContentType("text/html;charset=utf-8");
-    	response.setCharacterEncoding("UTF-8"); 
     	String a_poke = request.getParameter("a_poke");
-
-System.out.println(a_poke);
-
         Pokemon pokemon = userService.getPokemon(a_poke);
         
         request.setAttribute("pokemon", pokemon);

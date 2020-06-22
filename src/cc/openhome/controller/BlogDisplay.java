@@ -51,7 +51,7 @@ public class BlogDisplay extends HttpServlet {
 	        List<Blog> blog = userService.getInfo(info);
 	        request.setAttribute("blog", blog);
 	    }
-	    request.setAttribute("counter", ListenerTest.counter);
+	    request.setAttribute("online", ListenerTest.online);
         request.setAttribute("username", username);
     	request.getRequestDispatcher(BLOG_PATH).forward(request, response);
 	}

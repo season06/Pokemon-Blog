@@ -22,17 +22,21 @@ import cc.openhome.pokemon.ListenerTest;
 	urlPatterns = {"/login"},
 	initParams = {
 		@WebInitParam(name = "SUCCESS_PATH", value = "blog"),
-		@WebInitParam(name = "ERROR_PATH", value = "homepage.jsp")
+		@WebInitParam(name = "ERROR_PATH", value = "homepage.jsp"),
+		@WebInitParam(name = "FORBID_PATH", value = "error.jsp")
 	}
 )
 public class Login extends HttpServlet {
 	private String SUCCESS_PATH;
     private String ERROR_PATH;
+    private String FORBID_PATH;
+    private int count;
     
 	@Override
     public void init() throws ServletException {
 		SUCCESS_PATH = getServletConfig().getInitParameter("SUCCESS_PATH");
 		ERROR_PATH = getServletConfig().getInitParameter("ERROR_PATH");
+		FORBID_PATH = getServletConfig().getInitParameter("FORBID_PATH");
     }
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -47,15 +51,32 @@ public class Login extends HttpServlet {
         Account account = new Account();
 	    account.setName(username);
 	    account.setPassword(password);
-        if(userService.checkLogin(account))
+	    
+	    int result = userService.checkLogin(account);
+        if(result == 0)
         {
-        	request.getSession().setAttribute("login", username);
-        	response.sendRedirect(SUCCESS_PATH);
+        	request.setAttribute("error", "user isn't exist");
+        	request.getRequestDispatcher(ERROR_PATH).forward(request, response);
+        }
+        else if(result == -1)
+        {
+        	count++;
+        	
+        	if(count >= 3)
+        	{
+        		count = 0;
+        		userService.delUser(username);
+        		request.getRequestDispatcher(FORBID_PATH).forward(request, response);
+        	}
+        	
+        	request.setAttribute("error", "password error");
+        	request.getRequestDispatcher(ERROR_PATH).forward(request, response);
         }
         else
         {
-        	request.setAttribute("error", "login fail");
-        	request.getRequestDispatcher(ERROR_PATH).forward(request, response);
+        	count = 0;
+        	request.getSession().setAttribute("login", username);
+        	response.sendRedirect(SUCCESS_PATH);
         }        
     }
 }

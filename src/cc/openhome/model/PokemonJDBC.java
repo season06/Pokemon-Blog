@@ -28,14 +28,5 @@ public class PokemonJDBC implements PokemonDAO
             return new Pokemon(id, name, attribute, path);
         }
         return null;
-        /*List<Pokemon> list = new ArrayList<Pokemon>();
-        for(Map row : rows) {
-        	String id = (String) row.get("ID");
-        	String name = (String) row.get("pokemon_name");
-            String attribute = (String) row.get("attribute");
-            String path = (String) row.get("path");
-            list.add(new Pokemon(id, name, attribute, path));
-        }
-        return list;*/
     }
 }

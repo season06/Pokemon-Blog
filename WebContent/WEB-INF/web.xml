@@ -49,6 +49,10 @@
 			<param-name>ERROR_PATH</param-name>
 			<param-value>homepage.jsp</param-value>
 		</init-param>
+		<init-param>
+			<param-name>FORBID_PATH</param-name>
+			<param-value>error.jsp</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>

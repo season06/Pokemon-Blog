@@ -15,7 +15,7 @@ import cc.openhome.model.*;
 
 @WebListener
 public class ListenerTest  implements ServletContextListener, HttpSessionAttributeListener, HttpSessionListener {
-	public static int counter = 0;
+	public static int online = 0;
 	
     public void contextInitialized(ServletContextEvent sce) {
         try {
@@ -33,15 +33,20 @@ public class ListenerTest  implements ServletContextListener, HttpSessionAttribu
     public void attributeAdded(HttpSessionBindingEvent sbe)
     {
     	System.out.println("-------------attributeAdded()---------------");
-        counter++;
+    	if(online < 0)
+    		online = 0;
+    	online++;
+    	System.out.println(online);
     }
     public void attributeRemoved(HttpSessionBindingEvent sbe)
     { 
     	System.out.println("-------------attributeRemoved()---------------");
 		//System.out.println(new Date(sbe.getSession().getLastAccessedTime()));
-    	counter--;
-    	if(counter < 0)
-    		counter = 0;
+    	online--;
+    	if(online < 0)
+    		online = 0;
+    	System.out.println(online);
+
     }
 	public void sessionCreated(HttpSessionEvent se)
 	{
