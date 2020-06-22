@@ -17,30 +17,34 @@ import cc.openhome.model.UserService;
 	name = "NewMessage",
 	urlPatterns = {"/new_message"},
 	initParams = {
-		@WebInitParam(name = "TRANS_PATH", value = "search.jsp"),
+		@WebInitParam(name = "SUCCESS_PATH", value = "blog"),
+		@WebInitParam(name = "ERROR_PATH", value = "search.jsp")
 	}
 )
 public class NewMessage extends HttpServlet
 {
-	private String TRANS_PATH;
+	private String SUCCESS_PATH;
+	private String ERROR_PATH;
 
     @Override
     public void init() throws ServletException
     {
-    	TRANS_PATH = getServletConfig().getInitParameter("SUCCESS_PATH");
+    	SUCCESS_PATH = getServletConfig().getInitParameter("SUCCESS_PATH");
+    	ERROR_PATH = getServletConfig().getInitParameter("ERROR_PATH");
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
                              		throws ServletException, IOException
     {
     	String username = (String) request.getSession().getAttribute("login");
-    	String pokemon = "¥Ö¥d¥C";
     	UserService userService = 
     			(UserService) getServletContext().getAttribute("userService");
     	
     	Blog blog = new Blog();
     	
-    	request.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=utf-8");
+    	response.setCharacterEncoding("UTF-8");
+    	String pokemon = request.getParameter("poke_id");
     	String txt = request.getParameter("txt");
     	
     	List<String> error = new ArrayList<>();
@@ -59,9 +63,16 @@ public class NewMessage extends HttpServlet
     	else
     		error.add("Max message's length is 200");
     	
-    	if(!error.isEmpty())
+    	if(error.isEmpty())
+    	{
+    		response.sendRedirect(SUCCESS_PATH);
+    	}
+    	else
+    	{
     		request.setAttribute("error", error);
-    	request.getRequestDispatcher(TRANS_PATH).forward(request, response);
+        	request.getRequestDispatcher(ERROR_PATH).forward(request, response);
+    	}
+    		
     }
 
     protected void doGet(HttpServletRequest request,

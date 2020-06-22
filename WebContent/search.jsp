@@ -1,5 +1,5 @@
-<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@page import="java.util.*, cc.openhome.model.Pokemon"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, cc.openhome.model.Pokemon"%>
 <html>
 <head>
     <meta http-equiv="Pragma" content="no-cache">
@@ -9,7 +9,7 @@
 
         @font-face {
             font-family: "WaWa Ti";
-            src: url("font.ttc");
+            src: url("./frontend_pict/font.ttc");
         }
 
         body {
@@ -325,7 +325,7 @@
         </span></button>
         
     </form>
-
+	<% Pokemon poke = (Pokemon) request.getAttribute("pokemon"); %>
     <div class="main">
         <div class="square">
             <span class="animate"></span>
@@ -333,7 +333,6 @@
             <span class="animate"></span>
             <span class="animate"></span>
             <div class="content">
-            	<% Pokemon poke = (Pokemon) request.getAttribute("pokemon"); %>
                 <p><span><%= poke.getID() %></span><span><%= poke.getName() %></span><span><%= poke.getAttribute() %></span></p>
                 <img src=<%= poke.getPicture() %> alt="">
                 <br>
@@ -344,8 +343,9 @@
 				        	<%=err%>
 				    <%}}
 				%>
-                <form action="new_message" method="POST">
+                <form method="post" action="new_message">
                     <textarea class="message" name="txt" cols="30" rows="10">${param.txt}</textarea>
+                    <input type="text" name='poke_id' value=<%= poke.getID() %>>
                     <input class="submit" type="submit" value="Send">
                 </form>
             </div>

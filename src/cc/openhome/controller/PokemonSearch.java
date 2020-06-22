@@ -20,7 +20,7 @@ import cc.openhome.model.UserService;
 
 @WebServlet(
 	name = "Search",
-	urlPatterns = {"/search"},
+	urlPatterns = {"/search/*"},
 	initParams = {
 		@WebInitParam(name = "SEARCH_PATH", value = "search.jsp"),
 	}
@@ -32,23 +32,23 @@ public class PokemonSearch extends HttpServlet {
     public void init() throws ServletException {
     	SEARCH_PATH = getServletConfig().getInitParameter("SEARCH_PATH");
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
                              throws ServletException, IOException
 	{
-System.out.println("0");
     	UserService userService = 
     			(UserService) getServletContext().getAttribute("userService");
+    	request.setCharacterEncoding("UTF-8");
+    	//request.setCharacterEncoding("ISO8859-1");
+    	response.setContentType("text/html;charset=utf-8");
+    	response.setCharacterEncoding("UTF-8"); 
     	String a_poke = request.getParameter("a_poke");
-System.out.println("1");
-    	Pokemon poke = new Pokemon();
-System.out.println("2");
-    	poke.setName(a_poke);
-System.out.println("3");
-        Pokemon pokemon = userService.getPokemon(poke);
-System.out.println("4");
+
+System.out.println(a_poke);
+
+        Pokemon pokemon = userService.getPokemon(a_poke);
+        
         request.setAttribute("pokemon", pokemon);
-System.out.println("5");
     	request.getRequestDispatcher(SEARCH_PATH).forward(request, response);
 	}
 }

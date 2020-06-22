@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface PokemonDAO
 {
-   Pokemon getPokemon(Pokemon pokemon);
+   Pokemon getPokemon(String pokemon_name);
 }

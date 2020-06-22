@@ -53,9 +53,9 @@ public class UserService
         accountDAO.updatePassword(account);
     }
     
-    public Pokemon getPokemon(Pokemon pokemon)
+    public Pokemon getPokemon(String pokemon_name)
     {
-    	Pokemon poke = pokemonDAO.getPokemon(pokemon);
+    	Pokemon poke = pokemonDAO.getPokemon(pokemon_name);
     	return poke;
     }
     

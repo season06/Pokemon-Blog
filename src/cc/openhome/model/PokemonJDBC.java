@@ -14,10 +14,10 @@ public class PokemonJDBC implements PokemonDAO
     }
 
     @Override
-    public Pokemon getPokemon(Pokemon pokemon)
+    public Pokemon getPokemon(String pokemon_name)
     {
-        List<Map> rows = jdbcTemplate.queryForList("SELECT * FROM pokemon WHERE pokemon_name = ?", 
-        		new Object[] {pokemon.getName()});
+        List<Map> rows = jdbcTemplate.queryForList("SELECT * FROM pokemon WHERE ID = ?", 
+        		new Object[] {pokemon_name});
         if(rows.size() == 1) 
         {
             Map row = rows.get(0);
