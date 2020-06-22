@@ -1,5 +1,6 @@
 package cc.openhome.model;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 import javax.sql.DataSource;
@@ -14,19 +15,19 @@ public class PokemonJDBC implements PokemonDAO
     }
 
     @Override
-    public Pokemon getPokemon(String pokemon_name)
+    public List<Pokemon> getPokemon(String pokemon_name)
     {
-        List<Map> rows = jdbcTemplate.queryForList("SELECT * FROM pokemon WHERE ID = ?", 
+        List<Map> rows = jdbcTemplate.queryForList("SELECT * FROM pokemon WHERE pokemon_name = ?", 
         		new Object[] {pokemon_name});
-        if(rows.size() == 1) 
+        List<Pokemon> poke = new ArrayList<Pokemon>();
+        for(Map row : rows)
         {
-            Map row = rows.get(0);
-            String id = (String) row.get("ID");
+        	String id = (String) row.get("ID");
         	String name = (String) row.get("pokemon_name");
             String attribute = (String) row.get("attribute");
             String path = (String) row.get("path");
-            return new Pokemon(id, name, attribute, path);
+            poke.add(new Pokemon(id, name, attribute, path));
         }
-        return null;
+        return poke;
     }
 }

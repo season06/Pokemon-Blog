@@ -16,7 +16,6 @@
             background-color: #1e2128;
             margin: 0;
             padding: 0;
-            overflow: hidden;
         }
 
         .logo {
@@ -111,14 +110,14 @@
         @import url("./frontend_pict/font.ttc");
 
         .main {
-            position:absolute;
-            top:20%;
             /* background: red; */
             width: 100%;
-            height: 650px;
+            height: 600px;
             align-items: center;
             margin: 0;
             padding: 0;
+            position:relative;
+            top:-10px;
         }
 
         .main .square {
@@ -311,8 +310,8 @@
             <span>></span>
         </a>
     </div>
-    <form method="get" action="search">
-        <input class="searchInput" type="text" name="a_poke" autocomplete="off">
+    <form method="post" action="search">
+        <input class="searchInput" type="text" name="a_poke">
         <button class="searchSubmit" type="submit" value=""><span>
             <svg style="color: white;" xmlns="http://www.w3.org/2000/svg"
                 width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
@@ -323,7 +322,8 @@
         </span></button>
         
     </form>
-	<% Pokemon poke = (Pokemon) request.getAttribute("pokemon"); %>
+	<% List<Pokemon> pokemon = (List<Pokemon>) request.getAttribute("pokemon"); 
+	for(Pokemon poke:pokemon) { %>
     <div class="main">
         <div class="square">
             <span class="animate"></span>
@@ -349,6 +349,7 @@
             </div>
         </div>
     </div>
+    <%} %>
 </body>
 
 </html>

@@ -349,7 +349,7 @@
         	text-align:center;
         	vertical-align:middle;
         	font-family:"Arial";
-        	animation: shin 2s infinite;
+        	animation: shin 2s linear infinite;
         }
         .online_user p{
 	        margin:0;
@@ -359,15 +359,16 @@
         }
         
         @keyframes shin{
-        	form{
-        		box-shadow:0 0 20px yellow,
-			        		0 0 40px yellow,
-			        		0 0 60px yellow;
+        	0%{
+        		box-shadow:none;
         	}
-        	to{
+        	50%{
 	        	box-shadow:0 0 20px yellow,
 			        		0 0 40px yellow,
 			        		0 0 60px yellow;
+	        }
+	        100%{
+	        	box-shadow:none;
 	        }
         }
     </style>

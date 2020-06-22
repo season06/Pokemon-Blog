@@ -33,7 +33,7 @@ public class PokemonSearch extends HttpServlet {
     	SEARCH_PATH = getServletConfig().getInitParameter("SEARCH_PATH");
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
                              throws ServletException, IOException
 	{
     	UserService userService = 
@@ -41,8 +41,9 @@ public class PokemonSearch extends HttpServlet {
     	
     	request.setCharacterEncoding("UTF-8");
     	String a_poke = request.getParameter("a_poke");
-        Pokemon pokemon = userService.getPokemon(a_poke);
-        
+        System.out.println(a_poke);
+    	
+    	List<Pokemon> pokemon = userService.getPokemon(a_poke);
         request.setAttribute("pokemon", pokemon);
     	request.getRequestDispatcher(SEARCH_PATH).forward(request, response);
 	}

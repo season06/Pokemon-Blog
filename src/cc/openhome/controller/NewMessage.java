@@ -42,10 +42,10 @@ public class NewMessage extends HttpServlet
     	
     	Blog blog = new Blog();
     	
-    	response.setContentType("text/html;charset=utf-8");
     	response.setCharacterEncoding("UTF-8");
     	String pokemon = request.getParameter("poke_id");
     	String txt = request.getParameter("txt");
+    	System.out.println(txt);
     	
     	List<String> error = new ArrayList<>();
     	if(txt == null || txt.length() == 0)

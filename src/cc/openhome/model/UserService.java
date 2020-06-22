@@ -60,9 +60,9 @@ public class UserService
     	accountDAO.delUser(username);
     }
     
-    public Pokemon getPokemon(String pokemon_name)
+    public List<Pokemon> getPokemon(String pokemon_name)
     {
-    	Pokemon poke = pokemonDAO.getPokemon(pokemon_name);
+    	List<Pokemon> poke = pokemonDAO.getPokemon(pokemon_name);
     	return poke;
     }
     
