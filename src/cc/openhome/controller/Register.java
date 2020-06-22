@@ -56,7 +56,7 @@ public class Register extends HttpServlet {
 		if(!validateUsername(username))
 			error.add("Username is empty or format is not correct!");
 		if(!validatePassword(password, password2))
-			error.add("Please check the format of password, and double check your password.");
+			error.add("Please double check your password.");
 		
 		en_pw = FunctionTool.Encrypt(password);	
 		

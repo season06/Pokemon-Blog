@@ -149,7 +149,7 @@
 <body>
     <div onclick="go_click()" id="go_button"></div>
     <div id="login_area">
-        <img class="login_img" src="./frontend_pict/pokemon.png">
+    	<a href='register.jsp'><img class="login_img" src="./frontend_pict/pokemon.png"></a>
         <h3>Log In Here</h2>
         	<div style='color: rgb(255, 0, 0);'>${ requestScope.error }</div>
             <form class="login_info" method='post' action="login">

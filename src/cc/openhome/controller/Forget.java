@@ -52,7 +52,7 @@ public class Forget extends HttpServlet {
 		List<String> error = new ArrayList<>();
 		
 		if(!validatePassword(password, password2))
-			error.add("Please check the format of password, and double check your password.");
+			error.add("Please double check your password.");
 		else
 			en_pw = FunctionTool.Encrypt(password);	
 		

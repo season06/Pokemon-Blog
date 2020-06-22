@@ -111,12 +111,12 @@
         @import url("./frontend_pict/font.ttc");
 
         .main {
-            margin-top: 30px;
+            position:absolute;
+            top:20%;
             /* background: red; */
             width: 100%;
-            height: 600px;
+            height: 650px;
             align-items: center;
-            overflow: hidden;
             margin: 0;
             padding: 0;
         }
@@ -128,7 +128,6 @@
             height: 500px;
             margin: auto;
             box-sizing: border-box;
-            margin-top: 50px;
             cursor: pointer;
         }
 
@@ -224,7 +223,6 @@
 
         .main .square .content p {
             text-align: center;
-            /* background: pink; */
             padding: 0;
             margin: 0;
             color: white;
@@ -234,7 +232,7 @@
 
         .message {
             position: relative;
-            left: 25px;
+            left: 95px;
             border: 0;
             outline: none;
             width: 300px;
@@ -249,8 +247,8 @@
 
         .submit {
             position: relative;
-            top: -10px;
-            left: -30px;
+            top: -30px;
+            left: 130px;
             border: none;
             background: transparent;
             outline: none;
@@ -345,7 +343,7 @@
 				%>
                 <form method="post" action="new_message">
                     <textarea class="message" name="txt" cols="30" rows="10">${param.txt}</textarea>
-                    <input type="text" name='poke_id' value=<%= poke.getID() %>>
+                    <input style="visibility:hidden" type="text" name='poke_id' value=<%= poke.getID() %>>
                     <input class="submit" type="submit" value="Send">
                 </form>
             </div>

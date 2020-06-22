@@ -39,7 +39,9 @@ public class ListenerTest  implements ServletContextListener, HttpSessionAttribu
     { 
     	System.out.println("-------------attributeRemoved()---------------");
 		//System.out.println(new Date(sbe.getSession().getLastAccessedTime()));
-        counter--;
+    	counter--;
+    	if(counter < 0)
+    		counter = 0;
     }
 	public void sessionCreated(HttpSessionEvent se)
 	{

@@ -7,12 +7,16 @@
     <meta http-equiv="Pragma" content="no-cache">
 </head>
 <style>
+@import url("https://fonts.googleapis.com/css?family=VT323");
     body {
+    	width:100%;
+    	height:100%;
         background-image: url("./frontend_pict/change_password.jpg");
-        background-size: 100% 100%;
+        background-size: 100%;
         text-align: center;
         justify-content: center;
         overflow: hidden;
+        background-repeat:no-repeat;
     }
 
 
@@ -127,7 +131,7 @@
 
     .inputName {
         position: absolute;
-        top: 48%;
+        top: 53%;
         left: 7.5%;
         width: 12%;
         height: 40px;
@@ -138,7 +142,7 @@
 
     .inputPass {
         position: absolute;
-        top: 56%;
+        top: 61%;
         left: 7.5%;
         width: 12%;
         height: 40px;
@@ -149,7 +153,7 @@
 
     .inputCpass {
         position: absolute;
-        top: 65%;
+        top: 70%;
         left: 7.5%;
         width: 12%;
         height: 40px;
@@ -167,7 +171,7 @@
         height: 40px;
         width: 180px;
         position: absolute;
-        top: 74%;
+        top: 79%;
         left: 8%;
         border: 2px #bee1ff solid;
         background-image: url("./frontend_pict/sky.png");
@@ -180,36 +184,51 @@
 
     .container {
         position: absolute;
-        top: 44%;
+        top: 49%;
         left: 4%;
         width: 300px;
         height: 300px;
         background-color: rgba(255, 255, 255, 0.459);
         border-radius: 10px;
     }
+    
+     .error{
+     	position:absolute;
+     	top:50%;
+     	left:50%;
+        margin: 0;
+        width: 400px;
+      	height: 150px;
+        background-color: rgb(255, 73, 49, 0.7);
+        border: white 2px solid;
+        border-radius: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        color:black;
+    }
+    .error .title{
+    	position:relative;
+        font-family: "VT323";
+        padding: 0;
+        margin: 0;
+        font-size: 25px;
+        text-align: center;
+        color:white;
+    }
+
+    .error .discription{
+        font-family: "VT323";
+        padding: 0;
+        margin: 0;
+        font-size: 20px;
+        text-align: justify;
+        color:white;
+    }
 </style>
 
 <body>
     <div class="msg">
         <p class="text" data-text="NEW PASSWORD">NEW PASSWORD</p>
-        </ul>
-        	<%
-			    List<String> error = (List<String>) request.getAttribute("error");
-			    if(error != null) {
-			%>
-			        <h1>Change password fail</h1>
-			        <ul style='color: rgb(255, 0, 0);'>
-			<%
-			        for (String err : error) {
-			%>
-			        <li><%= err %></li>
-			<%
-			        }
-			%>
-			        </ul><br>
-			<%                
-			    }
-			%>
         <form method='post' action='forget'>
             <div class="container"></div>
             <div class="inputName"><input class="name" type="text" name="username" placeholder="Name" autocomplete="off">
@@ -220,6 +239,19 @@
             </div>
             <input type="submit" value="change">
         </form>
+    </div>
+    
+
+		<% List<String> error = (List<String>) request.getAttribute("error");
+			if(error != null) { %>
+				<div class="error">
+		        <p class="title">ERROR : Change password fail</p>
+				 <% for (String err : error) { %>
+					 <p class="discription"><%= err %></p>
+					 
+		 <%}}%>
+		 </div>
+    
 
 </body>
 

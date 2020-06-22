@@ -23,25 +23,18 @@
             color: black;
             position: absolute;
             left: 45%;
-            top: 3%;
+            top: 0;
             background: transparent;
         }
 
-        .logo button{
-            border: none;
-            outline: none;
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .logo p {
+        .logo a {
             font-size: 30px;
             margin: 0;
             padding: 0;
             text-decoration: none;
         }
 
-        .logo p::after {
+        .logo a::after {
             border-right: 2px white solid;
             margin: 0;
             padding: 0;
@@ -50,7 +43,7 @@
             overflow: hidden;
             white-space: nowrap;
             font-family: 'Anonymous Pro', monospace;
-            content: 'PokÃ©mon Go ';
+            content: 'Pokemon Go ';
         }
 
         @keyframes anim {
@@ -75,35 +68,35 @@
             }
 
             48% {
-                content: "PokÃ©";
+                content: "Poke";
             }
 
             54% {
-                content: "PokÃ©m";
+                content: "Pokem";
             }
 
             60% {
-                content: "PokÃ©mo";
+                content: "Pokemo";
             }
 
             66% {
-                content: "PokÃ©mon";
+                content: "Pokemon";
             }
 
             72% {
-                content: "PokÃ©mon ";
+                content: "Pokemon ";
             }
 
             82% {
-                content: "PokÃ©mon G";
+                content: "Pokemon G";
             }
 
             90% {
-                content: "PokÃ©mon G";
+                content: "Pokemon G";
             }
 
             100% {
-                content: "PokÃ©mon Go";
+                content: "Pokemon Go";
             }
         }
 
@@ -138,7 +131,7 @@
             margin: 0;
             position: absolute;
             top: 11%;
-            left: 49.5%;
+            left: 49%;
             height: 40px;
             width: 40px;
             background: rgb(173, 173, 173);
@@ -152,14 +145,14 @@
 
         .searchBox:hover {
             transition: 0.5s;
-            box-shadow: 0 0 6px rgb(221, 221, 221),
-                0 0 12px rgb(221, 221, 221);
+            box-shadow: 0 0 10px rgb(221, 221, 221),
+                0 0 20px rgb(221, 221, 221);
         }
 
         .welcome {
             background: transparent;
             position: absolute;
-            top: 59%;
+            top: 58%;
             right: 0%;
             width: 300px;
             height: 125px;
@@ -181,12 +174,13 @@
             padding: 0 10px;
             position: absolute;
             float: left;
-            top: 56%;
+            top: 55%;
             font-family: 'Copperplate', fantasy;
             font-size: 90px;
             color: #9c9c9c;
             mix-blend-mode: screen;
             cursor: default;
+            z-index:100;
         }
 
         .main {
@@ -341,14 +335,53 @@
             box-shadow: 0 0 10px white,
             0 0 20px white;
         }
+        
+        .online_user{
+	        width:30px;
+	        height:30px;
+	        border-radius:15px;
+	        background:grey;
+	        position:absolute;
+	        top:30px;
+	        right:10px;
+	        z-index:200;
+        	color:white;
+        	text-align:center;
+        	vertical-align:middle;
+        	font-family:"Arial";
+        	animation: shin 2s infinite;
+        }
+        .online_user p{
+	        margin:0;
+	        padding:0;
+        	position:relative;
+        	top:4px;
+        }
+        
+        @keyframes shin{
+        	form{
+        		box-shadow:0 0 20px yellow,
+			        		0 0 40px yellow,
+			        		0 0 60px yellow;
+        	}
+        	to{
+	        	box-shadow:0 0 20px yellow,
+			        		0 0 40px yellow,
+			        		0 0 60px yellow;
+	        }
+        }
     </style>
 </head>
 
 <body>
+	<div class="online_user">
+		<p><%= request.getAttribute("counter") %></p>
+	</div>
+
     <div class="head"></div>
     <img class="head_pic" src="./frontend_pict/blog7.png" alt="">
     <div class="logo">
-        <br><a href='logout'>Logout ${sessionScope.login}</a>
+        <br><a href='logout'></a>
     </div>
     <a href="./search.jsp" class="searchBox">
         <svg style="position: absolute; top: 10px; left: 10px; color: rgb(221, 221, 221);"
@@ -390,4 +423,24 @@
      <% } %>
 </body>
 
+
+<script>
+    var img_posi = document.getElementsByClassName("head_pic")[0];
+    var mess = document.getElementsByClassName("yourPicture")[0];
+    var mess_top = mess.style.top
+    window.addEventListener('scroll', function () {
+        var top = window.pageYOffset;
+        console.log(top);
+        img_posi.style.top = (-0.2 * top) + "px";
+        if (top > 480) {
+            mess.style.top = top - 100 + "px"
+            mess.style.mixBlendMode = "normal";
+            mess.style.color = "rgba(255,255,255,0.8)"
+        } else {
+            mess.style.top = mess_top;
+            mess.style.mixBlendMode = "screen";
+            mess.style.color = "#9c9c9c"
+        }
+    });
+</script>
 </html>

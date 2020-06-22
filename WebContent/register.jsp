@@ -22,17 +22,22 @@
     </script>
 </head>
 <style>
+@import url("https://fonts.googleapis.com/css?family=VT323");
     /*a442ff*/
     body {
+    margin:0;
+    padding:0;
+    	width:100%;
+    	height:100%;
         background-image: url("./frontend_pict/register.jpg");
-        background-size: 100% 100%;
+        background-size: cover;
     }
     .regist{
         border: 2px solid white;
         border-radius: 20px;
         position: absolute;
         left:3%;
-        top: 35%;
+        top: 30%;
         width: 300px;
         height: 450px;
         padding: 20px;
@@ -127,27 +132,51 @@
                     0 0 25px #6cc4ff,
                     0 0 40px #6cc4ff;
     }
+    
+    .error{
+     	position:absolute;
+     	top:5%;
+     	left:3%;
+        margin: 0;
+        width: 300px;
+      	height: 150px;
+        background-color: rgba(17, 83, 137, 0.7);
+        border: white 2px solid;
+        border-radius: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .error .title{
+    	position:relative;
+        font-family: "VT323";
+        padding: 0;
+        margin: 0;
+        font-size: 25px;
+        text-align: center;
+        color:white;
+    }
+
+    .error .discription{
+        font-family: "VT323";
+        padding: 0;
+        margin: 0;
+        font-size: 20px;
+        text-align: justify;
+        color:white;
+    }
 </style>
 
 <body>
-	<%
-	    List<String> error = (List<String>) request.getAttribute("error");
-	    if(error != null) {
-	%>
-	        <h1>新增會員失敗</h1>
-	        <ul style='color: rgb(255, 0, 0);'>
-	<%
-	        for (String err : error) {
-	%>
-	        <li><%= err %></li>
-	<%
-	        }
-	%>
-	        </ul><br>
-	<%                
-	    }
-	%>
     <div class="box"></div>
+    <% List<String> error = (List<String>) request.getAttribute("error");
+			if(error != null) { %>
+				<div class="error">
+		        <p class="title">ERROR : regist fail</p>
+				 <% for (String err : error) { %>
+					 <p class="discription"><%= err %></p>
+					 
+		 <%}}%>
+		 </div>
     <div class="regist">
         <h3>Register</h3>
         <form method='post' action='register'>
