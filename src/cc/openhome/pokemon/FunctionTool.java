@@ -37,7 +37,7 @@ public class FunctionTool
 		String mailHost = "smtp.gmail.com";
 		String mailPort = "465";
 		String username = "mimi871006";
-		String password = "season1006";
+		String password = "youcannotseeme";
 		String from = "mimi871006@gmail.com";
 		String title = "";
 		String content = "";
